@@ -86,7 +86,7 @@ module.exports = (env, argv) => {
         systemvars: true,
       }),
       new CopyPlugin({
-        patterns: [{ from: "static/_redirects", to: "_redirects" }],
+        patterns: [{ from: "static/_redirects", to: "./" }],
       }),
     ],
   };
