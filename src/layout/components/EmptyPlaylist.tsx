@@ -25,7 +25,7 @@ function EmptyPlaylist() {
       <Typography variant="body2" fontWeight={500} sx={{ marginBottom: 2 }}>
         It's easy, We'll help you
       </Typography>
-      <CreatePlaylistButton variant="contained" color="secondary" size="large">
+      <CreatePlaylistButton variant="contained" color="secondary">
         Create palylist
       </CreatePlaylistButton>
     </CreatePlaylist>
