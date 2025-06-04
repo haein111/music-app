@@ -1,7 +1,12 @@
 import React from "react";
+import NewReleases from "./NewReleases";
 
-function HomePage() {
-  return <div>HomePage</div>;
-}
+const HomePage = () => {
+  return (
+    <div>
+      <NewReleases />
+    </div>
+  );
+};
 
 export default HomePage;
