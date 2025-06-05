@@ -1,5 +1,4 @@
 import React from "react";
-// import "./LoadingSpinner.css";
 import { keyframes, styled } from "@mui/material";
 
 const rotation = keyframes`
@@ -11,13 +10,13 @@ const rotation = keyframes`
   }
 `;
 
-const Spinner = styled("div")({
+const Spinner = styled("div")(({ theme }) => ({
   width: "200px",
   height: "200px",
-  borderRight: "6px solid #fff",
+  borderRight: `6px solid ${theme.palette.primary.main}`,
   borderRadius: "50%",
   animation: `${rotation} 2s infinite linear`,
-});
+}));
 
 function LoadingSpinner() {
   return (

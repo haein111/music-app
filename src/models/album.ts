@@ -2,7 +2,7 @@ import { Artist } from "./artist";
 import { ExternalUrls, Image, Restrictions } from "./commonType";
 
 export interface GetNewReleasesResponse {
-  album: {
+  albums: {
     href: string;
     limit: number;
     next: string | null;
