@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getNewReleases } from "../apis/albumapi";
+import { getNewReleases } from "../apis/albumApi";
 import useClientCredentialToken from "./useClientCredentialToken";
 
 const useGetNewReleases = () => {
