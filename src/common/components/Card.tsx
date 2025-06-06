@@ -8,12 +8,12 @@ const CardContainer = styled("div")(({ theme }) => ({
   minWidth: "100px",
   padding: "8px",
   position: "relative",
-  backgroundColor: theme.palette.background.paper,
   overflow: "hidden",
   transition: "transform 0.3s ease",
-
+  borderRadius: "12px",
   "&:hover": {
     transform: "scale(1.03)",
+    backgroundColor: theme.palette.action.hover,
   },
   "&:hover .overlayPlayButton": {
     opacity: 0.95,
@@ -22,7 +22,7 @@ const CardContainer = styled("div")(({ theme }) => ({
 
 const CardImage = styled("img")({
   width: "100%",
-  borderRadius: "8px",
+  borderRadius: "12px",
 });
 
 const OverlayPlayButton = styled("div")({

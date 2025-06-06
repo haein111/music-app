@@ -16,7 +16,7 @@ const Layout = styled("div")({
 
 const Sidebar = styled("div")(({ theme }) => ({
   width: "331px",
-  height: "100%", // =100vh from Layout
+  height: "100%",
   display: "flex", // 나중에 요소들을 쉽게 배열
   flexDirection: "column",
   [theme.breakpoints.down("sm")]: {
