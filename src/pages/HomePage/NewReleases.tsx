@@ -8,7 +8,7 @@ import MuiCard from "../../common/components/Card";
 
 const NewReleases = () => {
   const { data, error, isLoading } = useGetNewReleases();
-  console.log("Ddd", data);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
