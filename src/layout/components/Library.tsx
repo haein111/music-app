@@ -59,8 +59,7 @@ function Library() {
           {data.pages.map((page, index) => (
             <Playlist playlists={page.items} key={index} />
           ))}
-          <div ref={ref}>end</div>
-          {/* {isFetchingNextPage && <LoadingSpinner />} */}
+          <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
         </div>
       )}
     </PlaylistContainer>
