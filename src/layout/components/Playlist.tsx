@@ -11,18 +11,16 @@ interface PlaylistProps {
 const Playlist = ({ playlists }: PlaylistProps) => {
   //   const { data } = useGetCurrentUserPlaylists();
   //   console.log("Ddd", data);
-  const [selectedId, setSelectedId] = useState<string>("");
   const navigate = useNavigate();
-  const handleItemClick = (id: string) => {
-    setSelectedId(id);
+  const handleClick = (id: string) => {
     navigate(`/playlist/${id}`);
   };
+
   return (
     <div>
       {playlists.map((item) => (
         <PlaylistItem
-          selected={selectedId === item.id}
-          handleClick={handleItemClick}
+          handleClick={handleClick}
           name={item.name || ""}
           image={(item.images && item.images[0]?.url) || null}
           id={item.id || ""}

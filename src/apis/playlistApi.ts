@@ -15,3 +15,14 @@ export const getCurrentUserPlaylists = async ({
     throw new Error("fail to fetch current user playlists");
   }
 };
+
+export const getPlaylist = async (params) => {
+  try {
+    const response = await api.get(`/playlists/${params.playlist_id}`, {
+      params,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to fetch playlist detail");
+  }
+};

@@ -7,7 +7,6 @@ interface PlaylistItemProps {
   artistName: string | null;
   id: string;
   handleClick: (id: string) => void;
-  selected?: boolean;
 }
 
 const PlaylistItem = ({
@@ -16,13 +15,9 @@ const PlaylistItem = ({
   artistName,
   id,
   handleClick,
-  selected,
 }: PlaylistItemProps) => {
   return (
-    <Button
-      onClick={() => handleClick(id)}
-      variant={selected ? "contained" : "outlined"}
-    >
+    <Button onClick={() => handleClick(id)}>
       {image ? <Avatar src={image} alt={name} /> : <Avatar>{name[0]}</Avatar>}
       <ListItemText
         primary={<Typography>{name}</Typography>}

@@ -6,6 +6,7 @@ const useClientCredentialToken = (): string | undefined => {
     queryKey: ["client-credential-token"],
     queryFn: getClientCredentialTodken,
   });
+
   const clientCedentialToken = data?.access_token;
   return clientCedentialToken;
 };

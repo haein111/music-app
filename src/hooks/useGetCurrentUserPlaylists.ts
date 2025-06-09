@@ -11,10 +11,7 @@ import { GetCurrentUserPlaylistResponse } from "../models/apiResponse";
 const useGetCurrentUserPlaylists = ({
   limit,
   offset,
-}: GetCurrentUserPlaylistRequest): UseInfiniteQueryResult<
-  InfiniteData<GetCurrentUserPlaylistResponse, Error>,
-  Error
-> => {
+}: GetCurrentUserPlaylistRequest) => {
   return useInfiniteQuery({
     queryKey: ["current-user-playlists"],
     queryFn: ({ pageParam = 0 }) => {
@@ -27,7 +24,7 @@ const useGetCurrentUserPlaylists = ({
         const nextOffset = url.searchParams.get("offset");
         return nextOffset ? parseInt(nextOffset) : undefined;
       }
-      return undefined;
+      return 0;
     },
   });
 };
