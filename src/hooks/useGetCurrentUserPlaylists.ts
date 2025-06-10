@@ -24,7 +24,7 @@ const useGetCurrentUserPlaylists = ({
         const nextOffset = url.searchParams.get("offset");
         return nextOffset ? parseInt(nextOffset) : undefined;
       }
-      return 0;
+      return undefined;
     },
   });
 };
