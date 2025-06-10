@@ -6,7 +6,6 @@ import {
 import React from "react";
 import { getCurrentUserPlaylists } from "../apis/playlistApi";
 import { GetCurrentUserPlaylistRequest } from "../models/playlist";
-import { GetCurrentUserPlaylistResponse } from "../models/apiResponse";
 
 const useGetCurrentUserPlaylists = ({
   limit,

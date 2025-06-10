@@ -33,7 +33,6 @@ function Library() {
     isLoading,
     error,
   } = useGetCurrentUserPlaylists({ limit: 10, offset: 0 });
-  console.log("ddd", data);
   const { data: user } = useGetCurrentUserProfile();
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
