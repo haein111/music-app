@@ -8,9 +8,9 @@ export interface Image {
   width: number | null;
 }
 
-export interface Restrictions {
-  reason?: string;
-}
+// export interface Restrictions {
+//   reason?: string;
+// }
 
 export interface Followers {
   href?: string | null;
@@ -29,4 +29,8 @@ export interface Owner {
   type?: string;
   uri: string;
   display_name?: string | null;
+}
+
+export interface Restrictions {
+  reason?: "market" | "product" | "explicit" | (string & {});
 }
