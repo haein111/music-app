@@ -104,7 +104,9 @@ const PlaylistDetailPage = () => {
         </Box>
       </PlaylistHeader>
       {playlist?.tracks?.total ? (
-        <Typography>search</Typography>
+        <Typography>
+          자꾸 오류가 떠서... 출근해야 하므로... 오늘 일 끝나고 마무리 예정...
+        </Typography>
       ) : (
         <Table>
           <TableHead>
