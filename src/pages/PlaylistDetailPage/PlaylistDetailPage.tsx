@@ -47,6 +47,7 @@ const AlbumImage = styled("img")(({ theme }) => ({
 
 const RootContainer = styled("div")({
   height: "600px",
+  width: "100%",
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
@@ -66,21 +67,12 @@ const PlaylistContent = styled("div")(({ theme }) => ({
 }));
 
 const EmptyStateContainer = styled(Box)({
-  height: "calc(100% - 64px)", // 헤더 높이만큼 빼고 꽉 채움
+  height: "calc(100% - 64px)",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  overflow: "hidden", // 스크롤 제거
+  overflow: "hidden",
 });
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:hover": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  "& .MuiTableCell-root": {
-    borderBottom: "none",
-  },
-}));
 
 const PlaylistDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -151,9 +143,7 @@ const PlaylistDetailPage = () => {
           </Box>
         </PlaylistHeader>
         {playlist?.tracks?.total === 0 ? (
-          <EmptyStateContainer>
-            <Typography>Search</Typography>
-          </EmptyStateContainer>
+          <Typography>Search</Typography>
         ) : (
           <PlaylistContent>
             <Table>

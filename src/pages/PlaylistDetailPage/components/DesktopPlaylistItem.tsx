@@ -1,12 +1,21 @@
 import React from "react";
 import { PlaylistTrack } from "../../../models/playlist";
-import { Table, TableCell, TableRow } from "@mui/material";
+import { styled, Table, TableCell, TableRow } from "@mui/material";
 import { Episode, Track } from "../../../models/track";
 
 interface DesktopPlaylistItemProps {
   index: number;
   item: PlaylistTrack;
 }
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  "& .MuiTableCell-root": {
+    borderBottom: "none",
+  },
+}));
 
 const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
   const isEpisode = (track: Track | Episode): track is Episode => {
@@ -30,7 +39,7 @@ const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
   };
 
   return (
-    <TableRow>
+    <StyledTableRow>
       <TableCell>{index}</TableCell>
       <TableCell>{item.track.name || "unknown"}</TableCell>
       <TableCell>
@@ -42,7 +51,7 @@ const DesktopPlaylistItem = ({ item, index }: DesktopPlaylistItemProps) => {
           ? msToMinutesAndSeconds(item.track.duration_ms)
           : "unknown"}
       </TableCell>
-    </TableRow>
+    </StyledTableRow>
   );
 };
 

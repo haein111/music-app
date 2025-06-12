@@ -5,6 +5,7 @@ import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Profile = styled("img")(({ theme }) => ({
+  margin: "6px",
   width: "40px",
   borderRadius: "50px",
   boxShadow: `0 0 0 8px ${theme.palette.action.hover}`,
