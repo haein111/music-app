@@ -3,6 +3,7 @@ import React from "react";
 import theme from "../../theme";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
+import useCreatePlaylist from "../../hooks/useCreatePlaylist";
 
 const LibraryTitle = styled("div")({
   display: "flex",
@@ -13,7 +14,12 @@ const LibraryTitle = styled("div")({
 });
 
 function LibraryHead() {
-  const handleCreatePlaylist = () => {};
+  const { mutate: createPlaylist } = useCreatePlaylist();
+  const handleCreatePlaylist = () => {
+    createPlaylist({
+      name: "New Playlist",
+    });
+  };
 
   return (
     <LibraryTitle>

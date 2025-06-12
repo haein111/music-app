@@ -72,3 +72,10 @@ export interface PlaylistTrack {
   is_local?: boolean;
   track: Track | Episode;
 }
+
+export interface createPlaylistRequest {
+  name: string;
+  palylistPublic?: boolean;
+  collaborative?: boolean;
+  description?: string;
+}

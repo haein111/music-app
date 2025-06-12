@@ -46,7 +46,7 @@ const AlbumImage = styled("img")(({ theme }) => ({
 }));
 
 const RootContainer = styled("div")({
-  height: "100vh",
+  height: "600px",
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
