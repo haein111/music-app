@@ -18,7 +18,7 @@ const NewReleases = () => {
 
   return (
     <div>
-      <Typography variant="h1" paddingTop="8px">
+      <Typography variant="h1" fontWeight={700} padding="8px">
         New Released Album
       </Typography>
       {data && data.albums.items.length > 0 ? (

@@ -21,6 +21,9 @@ import ErrorMessage from "../../common/components/ErrorMessage";
 import DesktopPlaylistItem from "./components/DesktopPlaylistItem";
 import { PAGE_LIMIT } from "../../configs/commonConfig";
 import { useInView } from "react-intersection-observer";
+import LoginButton from "../../common/components/LoginButton";
+import { isAxiosError } from "axios";
+import ErrorHandler from "./ErrorHandler";
 
 const PlaylistHeader = styled(Grid)({
   display: "flex",
@@ -79,32 +82,55 @@ const PlaylistDetailPage = () => {
   const { ref, inView } = useInView();
   if (id === undefined) return <Navigate to="/" />;
 
-  const {
-    data: playlist,
-    isLoading: isPlaylistLoading,
-    error: palylistError,
-  } = useGetPlaylist({ playlist_id: id });
+  // const {
+  //   data: playlist,
+  //   isLoading: isPlaylistLoading,
+  //   error: palylistError,
+  // } = useGetPlaylist({ playlist_id: id });
 
   const {
-    data: playlistItems,
-    isLoading: isPlaylistItemsLoading,
-    error: playlistItemsLoading,
-    hasNextPage,
-    isFetchingNextPage,
-    fetchNextPage,
-  } = useGetPlaylistItems({ playlist_id: id, limit: 10 });
+    data: playlist,
+    error,
+    isLoading: isPlaylistLoading,
+  } = useGetPlaylist({ playlist_id: id });
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [inView]);
 
-  // console.log("dsa", playlistItems);
+  const {
+    data: playlistItems,
+    isLoading: isPlaylistItemsLoading,
+    error: playlistItemsError,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGetPlaylistItems({ playlist_id: id, limit: 10 });
 
   if (isPlaylistLoading) return <LoadingSpinner />;
-  if (palylistError)
-    return <ErrorMessage errorMessage={palylistError.message} />;
+
+  //로그인 요청청
+  if (error || playlistItemsError) {
+    if (error?.status === 401 || playlistItemsError?.status === 401) {
+      return (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          height="100%"
+        >
+          <Typography variant="h2" fontWeight="bold" mb={2}>
+            로그인이 필요합니다
+          </Typography>
+          <LoginButton />
+        </Box>
+      );
+    }
+    return <Typography>오류가 발생했습니다.</Typography>;
+  }
 
   return (
     <>
@@ -179,5 +205,4 @@ const PlaylistDetailPage = () => {
     </>
   );
 };
-
 export default PlaylistDetailPage;

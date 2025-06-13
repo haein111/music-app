@@ -4,21 +4,28 @@ import theme from "../../theme";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AddIcon from "@mui/icons-material/Add";
 import useCreatePlaylist from "../../hooks/useCreatePlaylist";
+import { getSpotifyAuthUrl } from "../../utils/auth";
+import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 
 const LibraryTitle = styled("div")({
   display: "flex",
   color: theme.palette.text.primary,
   alignItems: "center",
-  padding: "8px",
-  gap: "20px",
+  padding: "4px",
+  gap: "10px",
 });
 
 function LibraryHead() {
   const { mutate: createPlaylist } = useCreatePlaylist();
+  const { data: userProfile } = useGetCurrentUserProfile();
   const handleCreatePlaylist = () => {
-    createPlaylist({
-      name: "New Playlist",
-    });
+    if (userProfile) {
+      createPlaylist({
+        name: "New Playlist",
+      });
+    } else {
+      getSpotifyAuthUrl();
+    }
   };
 
   return (

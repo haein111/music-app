@@ -21,7 +21,7 @@ export const getCurrentUserPlaylists = async ({
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch current user playlists");
+    throw new Error("fail to fetch playlist items");
   }
 };
 
@@ -47,7 +47,7 @@ export const getPlaylistItems = async (
     });
     return response.data;
   } catch (error) {
-    throw new Error("fail to fetch playlist items");
+    throw error;
   }
 };
 

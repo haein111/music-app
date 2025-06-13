@@ -1,8 +1,23 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { GetPlaylistItemsRequest } from "../models/playlist";
 import { getPlaylistItems } from "../apis/playlistApi";
+import { use, useEffect } from "react";
+import useGetPlaylist from "./useGetPlaylist";
+import { useNavigate } from "react-router";
+import { getSpotifyAuthUrl } from "../utils/auth";
+import LoginButton from "../common/components/LoginButton";
 
 const useGetPlaylistItems = (params: GetPlaylistItemsRequest) => {
+  // useEffect(() => {
+  //   if (playlistError) {
+  //     if (playlistError.message === "Unauthorized") {
+  //       getSpotifyAuthUrl();
+  //     } else {
+  //       console.error("Failed to fetch playlist:", playlistError);
+  //     }
+  //   }
+  // });
+
   return useInfiniteQuery({
     queryKey: ["playlist-items", params.playlist_id],
     queryFn: ({ pageParam = 0 }) => {
