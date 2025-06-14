@@ -24,6 +24,7 @@ import { useInView } from "react-intersection-observer";
 import LoginButton from "../../common/components/LoginButton";
 import { isAxiosError } from "axios";
 import ErrorHandler from "./ErrorHandler";
+import EmptyPlaylistWithSearch from "./components/EmptyPlaylistWithSearch";
 
 const PlaylistHeader = styled(Grid)({
   display: "flex",
@@ -169,7 +170,7 @@ const PlaylistDetailPage = () => {
           </Box>
         </PlaylistHeader>
         {playlist?.tracks?.total === 0 ? (
-          <Typography>Search</Typography>
+          <EmptyPlaylistWithSearch />
         ) : (
           <PlaylistContent>
             <Table>

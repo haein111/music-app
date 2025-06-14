@@ -1,9 +1,9 @@
-import { SimplifiedAlbumObject } from "./album";
+import { SimplifiedAlbum } from "./album";
 import { Artist } from "./artist";
 import { ExternalUrls, Image, Restrictions } from "./commonType";
 
 export interface Track {
-  album?: SimplifiedAlbumObject;
+  album?: SimplifiedAlbum;
   artists?: Artist[];
   available_markets?: string[];
   disc_number?: number;
@@ -56,12 +56,11 @@ export interface Episode {
   show: Show;
 }
 
+export type SimplifiedEpisode = Omit<Episode, "show">;
+
 export interface Show {
   available_markets: string[];
-  copyrights: {
-    text?: string;
-    type?: string;
-  };
+  copyrights: Copyrights;
   description: string;
   html_description: string;
   explicit: boolean;
@@ -79,6 +78,11 @@ export interface Show {
   total_episodes: number;
 }
 
+export interface Copyrights {
+  text?: string;
+  type?: string;
+}
+
 // export interface TrackLink {
 //   external_urls: {
 //     spotify: string;
@@ -88,3 +92,25 @@ export interface Show {
 //   type: "track";
 //   uri: string;
 // }
+
+export interface SimplifiedAudioBook {
+  author: { name: string }[];
+  available_markets: string[];
+  copyrights: Copyrights;
+  description: string;
+  html_description: string;
+  edition?: string;
+  explicit: boolean;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: Image[];
+  languages: string[];
+  media_type: string;
+  name: string;
+  narrators: { name: string }[];
+  publisher: string;
+  type: "audiobook";
+  uri: string;
+  total_chapters: number;
+}

@@ -1,6 +1,4 @@
-import { SimplifiedAlbumObject } from "./album";
 import { ApiResponse } from "./apiResponse";
-import { Artist } from "./artist";
 import { ExternalUrls, Followers, Image, Owner } from "./commonType";
 import { Episode, Track } from "./track";
 
