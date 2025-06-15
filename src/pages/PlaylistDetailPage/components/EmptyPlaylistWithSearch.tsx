@@ -89,13 +89,13 @@ const EmptyPlaylistWithSearch = () => {
         })}
 
         {isLoading ? (
-          <LoadingSpinner /> // 로딩 중
+          <LoadingSpinner /> // Loading state
         ) : hasResults ? (
           <SearchResultList list={tracks} />
         ) : keyword === "" ? (
-          <></> // 검색어가 없을 때
+          <></> // When keyword is empty, do not show anything
         ) : (
-          <div>{`No Result for "${keyword}"`}</div> // 검색 결과가 없을 때
+          <div>{`No Result for "${keyword}"`}</div> // When there are no results
         )}
       </div>
     </SearchContainer>

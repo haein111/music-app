@@ -1,4 +1,6 @@
 import {
+  AddItemsToPlaylistRequest,
+  AddItemsToPlaylistResponse,
   createPlaylistRequest,
   GetCurrentUserPlaylistResponse,
   GetPlaylistItemsRequest,
@@ -66,5 +68,17 @@ export const createPlaylist = async (
     return response.data;
   } catch (error) {
     throw new Error("fail to create playlist");
+  }
+};
+
+export const addItemsToPlaylist = async (
+  playlist_id: string,
+  params: AddItemsToPlaylistRequest
+): Promise<AddItemsToPlaylistResponse> => {
+  try {
+    const response = await api.post(`/playlists/${playlist_id}/tracks`, params);
+    return response.data;
+  } catch (error) {
+    throw new Error("fail to add items to playlist");
   }
 };

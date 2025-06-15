@@ -1,11 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { GetPlaylistItemsRequest } from "../models/playlist";
 import { getPlaylistItems } from "../apis/playlistApi";
-import { use, useEffect } from "react";
-import useGetPlaylist from "./useGetPlaylist";
-import { useNavigate } from "react-router";
-import { getSpotifyAuthUrl } from "../utils/auth";
-import LoginButton from "../common/components/LoginButton";
+// import { use, useEffect } from "react";
+// import { getSpotifyAuthUrl } from "../utils/auth";
 
 const useGetPlaylistItems = (params: GetPlaylistItemsRequest) => {
   // useEffect(() => {
