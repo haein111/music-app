@@ -11,6 +11,7 @@ import useSearchItemsByKeyword from "../../../hooks/useSearchItemsByKeyword";
 import SearchResultList from "./SearchResultList";
 import LoadingSpinner from "../../../common/components/LoadingSpinner";
 import SearchIcon from "@mui/icons-material/Search";
+import playlistItems from "../../../hooks/useGetPlaylistItems";
 
 const SearchContainer = styled(Box)({
   padding: "14px",
@@ -91,7 +92,12 @@ const EmptyPlaylistWithSearch = () => {
         {isLoading ? (
           <LoadingSpinner /> // Loading state
         ) : hasResults ? (
-          <SearchResultList list={tracks} />
+          <SearchResultList
+            list={playlistItems?.pages?.flatMap((page) => page.items) ?? []}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            fetchNextPage={fetchNextPage}
+          />
         ) : keyword === "" ? (
           <></> // When keyword is empty, do not show anything
         ) : (

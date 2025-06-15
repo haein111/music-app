@@ -42,19 +42,23 @@ const SearchResultList = ({
   fetchNextPage,
 }: SearchResultListProps) => {
   const [ref, inView] = useInView();
-  // useParams를 사용하여 URL에서 id를 가져옵니다.
-  const { id } = useParams<{ id: string }>();
+
+  const { id } = useParams<{ id: string }>(); // Assuming id is the playlist ID
   const [uris, setUris] = useState<string[]>([]);
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView, hasNextPage, isFetchingNextPage]);
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  // add items to playlist
   const toggleUri = (uri: string) => {
-    setUris((prev) =>
-      prev.includes(uri) ? prev.filter((u) => u !== uri) : [...prev, uri]
+    setUris(
+      (prev) =>
+        prev.includes(uri) // 현재 선택된 목록에 uri가 있으면
+          ? prev.filter((u) => u !== uri) // 제거
+          : [...prev, uri] // 없으면 추가
     );
   };
 
@@ -131,7 +135,6 @@ const SearchResultList = ({
           </Table>
         );
       })}
-
       {/* 무한 스크롤 */}
       <div ref={ref} style={{ height: 1 }}>
         {isFetchingNextPage && <LoadingSpinner />}

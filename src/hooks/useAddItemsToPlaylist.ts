@@ -4,7 +4,6 @@ import { AddItemsToPlaylistRequest } from "../models/playlist";
 
 const useAddItemsToPlaylist = (playlist_id: string) => {
   const queryClient = useQueryClient();
-  // Invalidate the playlist items cache when adding items to a playlist
 
   return useMutation({
     mutationFn: (params: AddItemsToPlaylistRequest) => {
@@ -13,6 +12,8 @@ const useAddItemsToPlaylist = (playlist_id: string) => {
       }
       return Promise.reject(new Error("Playlist ID is required"));
     },
+
+    // Invalidate the playlist items cache
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["playlist-detail", playlist_id],
