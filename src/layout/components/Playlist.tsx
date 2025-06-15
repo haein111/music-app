@@ -9,8 +9,6 @@ interface PlaylistProps {
 }
 
 const Playlist = ({ playlists }: PlaylistProps) => {
-  //   const { data } = useGetCurrentUserPlaylists();
-  //   console.log("Ddd", data);
   const navigate = useNavigate();
   const handleClick = (id: string) => {
     navigate(`/playlist/${id}`);

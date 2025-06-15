@@ -16,6 +16,9 @@ import { useEffect } from "react";
 
 const AlbumContainer = styled(TableRow)(({ theme }) => ({
   width: "100%",
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
 }));
 
 const AlbumImage = styled("img")(({ theme }) => ({

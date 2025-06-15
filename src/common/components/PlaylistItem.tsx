@@ -1,5 +1,27 @@
-import { Avatar, Button, ListItemText, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  ListItemText,
+  styled,
+  Typography,
+} from "@mui/material";
 import React from "react";
+
+const PlaylistItemContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  padding: "6px",
+  borderRadius: "6px",
+
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: theme.palette.action.hover,
+  },
+  "&:active": {
+    backgroundColor: theme.palette.action.active,
+  },
+}));
 
 interface PlaylistItemProps {
   image: string | null;
@@ -17,13 +39,15 @@ const PlaylistItem = ({
   handleClick,
 }: PlaylistItemProps) => {
   return (
-    <Button onClick={() => handleClick(id)}>
-      {image ? <Avatar src={image} alt={name} /> : <Avatar>{name[0]}</Avatar>}
-      <ListItemText
-        primary={<Typography>{name}</Typography>}
-        secondary={<Typography>{artistName}</Typography>}
-      />
-    </Button>
+    <PlaylistItemContainer>
+      <Button onClick={() => handleClick(id)}>
+        {image ? <Avatar src={image} alt={name} /> : <Avatar>{name[0]}</Avatar>}
+        <ListItemText
+          primary={<Typography>{name}</Typography>}
+          secondary={<Typography>{artistName}</Typography>}
+        />
+      </Button>
+    </PlaylistItemContainer>
   );
 };
 
