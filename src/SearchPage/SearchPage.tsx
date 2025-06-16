@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import useGetSearchCategories from "../hooks/useGetSearchCategories";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -114,9 +114,17 @@ const SearchPage = () => {
       })}
 
       {hasNextPage && (
-        <button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-          {isFetchingNextPage ? "Loading more..." : "Load more"}
-        </button>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <Button
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            variant="contained"
+            color="secondary"
+            size="large"
+          >
+            {isFetchingNextPage ? "Loading more..." : "Load more"}
+          </Button>
+        </Box>
       )}
     </div>
   );
