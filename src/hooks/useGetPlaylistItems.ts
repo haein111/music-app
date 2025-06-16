@@ -18,7 +18,6 @@ const useGetPlaylistItems = (params: GetPlaylistItemsRequest) => {
   return useInfiniteQuery({
     queryKey: ["playlist-items", params.playlist_id],
     queryFn: ({ pageParam = 0 }) => {
-      console.log("Fetching page with offset:", pageParam);
       return getPlaylistItems({ offset: pageParam, ...params });
     },
     initialPageParam: 0,

@@ -1,10 +1,40 @@
-import { Box, ListItemIcon, Menu, MenuItem, styled } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Box,
+  InputBase,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  styled,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import LoginButton from "../../common/components/LoginButton";
 import useGetCurrentUserProfile from "../../hooks/useGetCurrentUserProfile";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import useUserLogout from "../../hooks/useUserLogout";
+import { useNavigate } from "react-router";
+import SearchIcon from "@mui/icons-material/Search";
+import { useLocation } from "react-router-dom";
+
+const SearchBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  width: "300px",
+  margin: "8px",
+  alignItems: "center",
+  backgroundColor: theme.palette.action.active,
+  borderRadius: "8px",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "transparent",
+    },
+    "&:hover fieldset": {
+      borderColor: theme.palette.primary.dark,
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
 
 const Profile = styled("img")(({ theme }) => ({
   margin: "6px",
@@ -19,7 +49,25 @@ function Navbar() {
 
   const logout = useUserLogout();
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // null 또는 HTML Element
+  // Search
+
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const isSearchPage = location.pathname.startsWith("/search"); // check if it is search page
+
+  useEffect(() => {
+    const trimmed = search.trim();
+
+    if (location.pathname.startsWith("/search")) {
+      if (trimmed) {
+        navigate(`/search/${encodeURIComponent(trimmed)}`); // safely encode non-English characters and spaces in URLs
+      }
+    }
+  }, [search, navigate]);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // null or HTML Element
   const open = Boolean(anchorEl);
 
   const openMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -37,6 +85,18 @@ function Navbar() {
       alignItems="center"
       height="64px"
     >
+      {isSearchPage ? (
+        <SearchBox>
+          <SearchIcon sx={{ margin: "4px" }} />
+          <InputBase
+            placeholder={"What do you want to play?"}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </SearchBox>
+      ) : (
+        <Box sx={{ width: 300, height: 40 }} />
+      )}
       {userProfile ? (
         <>
           {imgUrl ? (
