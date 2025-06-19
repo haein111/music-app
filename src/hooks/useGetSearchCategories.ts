@@ -3,16 +3,16 @@ import useClientCredentialToken from "./useClientCredentialToken";
 import { getSearchCategories } from "../apis/searchApi";
 
 const useGetSearchCategories = () => {
-  const clientToken = useClientCredentialToken();
+  const clientCedentialToken = useClientCredentialToken();
 
   return useInfiniteQuery({
     queryKey: ["search-categories"],
     queryFn: ({ pageParam = 0 }) => {
-      if (!clientToken) {
+      if (!clientCedentialToken) {
         throw new Error("No token available");
       }
 
-      return getSearchCategories(clientToken, {
+      return getSearchCategories(clientCedentialToken, {
         locale: "ko_KR",
         limit: 18,
         offset: pageParam,

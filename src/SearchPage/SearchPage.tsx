@@ -35,7 +35,7 @@ const SearchPage = () => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [inView]);
@@ -58,7 +58,19 @@ const SearchPage = () => {
   }
 
   return (
-    <div sx={{ gap: 2, padding: 10 }}>
+    <Box
+      sx={{
+        gap: 2,
+        padding: 10,
+        overflowY: "auto",
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        "&::-webkit-scrollbar-track": {
+          background: "transparent",
+        },
+      }}
+    >
       {grouped.map((row, rowIndex) => {
         const isLastRow = rowIndex === grouped.length - 1;
         return (
@@ -70,6 +82,9 @@ const SearchPage = () => {
               justifyContent: "space-between",
               width: "100%",
               boxSizing: "border-box",
+              "&hover": {
+                transform: "scale(1.02)",
+              },
             }}
           >
             {row.map((category, idx) => {
@@ -80,7 +95,7 @@ const SearchPage = () => {
                   key={category.id}
                   sx={{
                     flex: 1,
-                    height: 100,
+                    height: 150,
                     borderRadius: "8px",
                     display: "flex",
                     flexDirection: "column",
@@ -89,21 +104,31 @@ const SearchPage = () => {
                     padding: 2,
                     position: "relative",
                     overflow: "hidden",
+                    transition: "transform 0.2s ease-in-out",
                     "&:hover": {
-                      transition: "transform 0.1s ease-in-out",
+                      transition: "scale(1.04)",
                     },
                   }}
                 >
-                  <Typography variant="subtitle1">{category.name}</Typography>
+                  <Typography
+                    variant="subtitle1"
+                    fontWeight="bold"
+                    sx={{ zIndex: 1 }}
+                  >
+                    {category.name}
+                  </Typography>
                   <Box
                     component="img"
                     src={category.icons?.[0]?.url}
                     alt={category.name}
                     sx={{
-                      width: 120,
-                      height: 120,
+                      width: 150,
+                      height: 150,
+                      right: -10,
                       position: "absolute",
                       transform: "rotate(25deg)",
+                      marginLeft: "auto",
+                      zIndex: 0,
                     }}
                   />
                 </Box>
@@ -113,20 +138,9 @@ const SearchPage = () => {
         );
       })}
 
-      {hasNextPage && (
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button
-            onClick={() => fetchNextPage()}
-            disabled={isFetchingNextPage}
-            variant="contained"
-            color="secondary"
-            size="large"
-          >
-            {isFetchingNextPage ? "Loading more..." : "Load more"}
-          </Button>
-        </Box>
-      )}
-    </div>
+      {/* 무한 스크롤 */}
+      <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
+    </Box>
   );
 };
 export default SearchPage;
