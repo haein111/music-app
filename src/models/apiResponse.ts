@@ -1,5 +1,3 @@
-import { ExternalUrls, Image, Owner } from "./commonType";
-
 export interface ApiResponse<T> {
   href: string;
   limit: number;

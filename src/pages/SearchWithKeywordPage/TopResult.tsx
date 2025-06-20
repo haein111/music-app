@@ -10,7 +10,7 @@ const TopResults = ({ item }: TopResultsPops) => {
     <Box>
       <Typography variant="h1">Top result</Typography>
       {item?.album?.images?.[0].url && (
-        <Box sx={{ margin: "14px" }}>
+        <Box sx={{ padding: "14px" }}>
           <Box
             component="img"
             src={item.album.images[0].url}
@@ -19,6 +19,9 @@ const TopResults = ({ item }: TopResultsPops) => {
           />
           <Typography variant="h1" fontWeight="bold">
             {item?.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Song • {item.artists?.[0]?.name}
           </Typography>
         </Box>
       )}

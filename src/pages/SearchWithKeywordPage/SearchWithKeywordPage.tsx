@@ -3,7 +3,8 @@ import { SEARCH_TYPE } from "../../models/search";
 import { useParams } from "react-router";
 import useGetSearchResult from "../../hooks/useGetSearchResult";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
-import TopSearchResults from "./TopSearchResults";
+import TopArea from "./TopArea";
+import ArtistsBox from "./ArtistsBox";
 
 function SearchWithKeywordPage() {
   const { keyword } = useParams<{ keyword: string }>();
@@ -38,9 +39,9 @@ function SearchWithKeywordPage() {
         </Typography>
       ) : (
         <>
-          <TopSearchResults tracks={playlist?.tracks} />
-          {/* <ArtistResults /> */}
-          {/* <AlbumResults /> */}
+          <TopArea tracks={playlist?.tracks} />
+          <ArtistsBox artists={playlist?.artists} />
+          <AlbumBox albums={playlist?.albums} />
         </>
       )}
     </Box>
