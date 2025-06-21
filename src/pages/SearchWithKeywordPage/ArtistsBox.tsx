@@ -12,7 +12,7 @@ const ArtistsBox = ({ artists }: ArtistsBoxProps) => {
     <Box>
       <Typography variant="h1">Artists</Typography>
       <Box sx={{ display: "flex", gap: 2 }}>
-        {artists?.items.slice(0, 8).map((artist) => {
+        {artists?.items.slice(0, 10).map((artist) => {
           return <ArtistCard key={artist.id} artist={artist} />;
         })}
       </Box>

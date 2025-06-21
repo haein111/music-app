@@ -38,7 +38,7 @@ const SearchPage = () => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, hasNextPage, isFetchingNextPage]);
 
   if (isError) return <div>Error fetching data</div>;
   if (isLoading)
@@ -60,86 +60,117 @@ const SearchPage = () => {
   return (
     <Box
       sx={{
-        gap: 2,
-        padding: 10,
-        overflowY: "auto",
-        flex: 1,
         display: "flex",
         flexDirection: "column",
-        "&::-webkit-scrollbar-track": {
-          background: "transparent",
-        },
+        flex: 1,
+        minHeight: 0,
+        height: "600px",
+        padding: "16px",
       }}
     >
-      {grouped.map((row, rowIndex) => {
-        const isLastRow = rowIndex === grouped.length - 1;
-        return (
-          <Box
-            key={rowIndex}
-            sx={{
-              display: "flex",
-              gap: 2,
-              justifyContent: "space-between",
-              width: "100%",
-              boxSizing: "border-box",
-              "&hover": {
-                transform: "scale(1.02)",
-              },
-            }}
-          >
-            {row.map((category, idx) => {
-              const bgColor = bgColors[(rowIndex * 3 + idx) % bgColors.length];
+      <Typography variant="h4" fontWeight="bold" sx={{ height: 20, mb: 2 }}>
+        Browse All
+      </Typography>
+      <Box
+        sx={{
+          overflowY: "auto",
+          display: "flex",
+          gap: 2,
+          flexWrap: "wrap",
+          alignContent: "flex-start",
+          flex: 1,
+          padding: "8px",
+          width: "100%",
 
-              return (
-                <Box
-                  key={category.id}
-                  sx={{
-                    flex: 1,
-                    height: 150,
-                    borderRadius: "8px",
-                    display: "flex",
-                    flexDirection: "column",
-                    backgroundColor: bgColor,
-                    justifyContent: "space-between",
-                    padding: 2,
-                    position: "relative",
-                    overflow: "hidden",
-                    transition: "transform 0.2s ease-in-out",
-                    "&:hover": {
-                      transition: "scale(1.04)",
-                    },
-                  }}
-                >
-                  <Typography
-                    variant="subtitle1"
-                    fontWeight="bold"
-                    sx={{ zIndex: 1 }}
-                  >
-                    {category.name}
-                  </Typography>
+          minHeight: 0,
+          overflowX: "hidden",
+          maxWidth: "100%",
+
+          "&::-webkit-scrollbar-track": {
+            background: "transparent",
+          },
+        }}
+      >
+        {grouped.map((row, rowIndex) => {
+          return (
+            <Box
+              key={rowIndex}
+              sx={{
+                justifyContent: "space-between",
+                boxSizing: "border-box",
+                display: "flex",
+                width: "100%",
+                gap: 2,
+
+                "&hover": {
+                  transform: "scale(1.02)",
+                },
+              }}
+            >
+              {row.map((category, idx) => {
+                const bgColor =
+                  bgColors[(rowIndex * 3 + idx) % bgColors.length];
+
+                return (
                   <Box
-                    component="img"
-                    src={category.icons?.[0]?.url}
-                    alt={category.name}
+                    key={category.id}
                     sx={{
-                      width: 150,
+                      flex: 1,
                       height: 150,
-                      right: -10,
-                      position: "absolute",
-                      transform: "rotate(25deg)",
-                      marginLeft: "auto",
-                      zIndex: 0,
-                    }}
-                  />
-                </Box>
-              );
-            })}
-          </Box>
-        );
-      })}
+                      borderRadius: "8px",
+                      backgroundColor: bgColor,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      padding: 2,
+                      position: "relative",
+                      overflow: "hidden",
+                      transition: "transform 0.2s ease-in-out",
 
-      {/* 무한 스크롤 */}
-      <div ref={ref}>{isFetchingNextPage && <LoadingSpinner />}</div>
+                      "&:hover": {
+                        transition: "scale(1.04)",
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      fontWeight="bold"
+                      sx={{ zIndex: 1 }}
+                    >
+                      {category.name}
+                    </Typography>
+                    <Box
+                      component="img"
+                      src={category.icons?.[0]?.url}
+                      alt={category.name}
+                      sx={{
+                        width: 150,
+                        height: 150,
+                        right: -10,
+                        bottom: -10,
+                        opacity: 0.7,
+                        position: "absolute",
+                        transform: "rotate(25deg)",
+                        marginLeft: "auto",
+                        zIndex: 0,
+                      }}
+                    />
+                  </Box>
+                );
+              })}
+              {row.length < 3 &&
+                Array.from({ length: 3 - row.length }).map((_, i) => (
+                  <Box key={`empty-${i}`} sx={{ flex: 1 }} />
+                ))}
+            </Box>
+          );
+        })}
+
+        {/* 무한 스크롤 */}
+        <Box ref={ref} sx={{ height: 1 }}>
+          {isFetchingNextPage && <LoadingSpinner />}
+        </Box>
+      </Box>
     </Box>
   );
 };

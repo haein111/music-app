@@ -5,6 +5,7 @@ import useGetSearchResult from "../../hooks/useGetSearchResult";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
 import TopArea from "./TopArea";
 import ArtistsBox from "./ArtistsBox";
+import AlbumsBox from "./AlbumsBox";
 
 function SearchWithKeywordPage() {
   const { keyword } = useParams<{ keyword: string }>();
@@ -30,7 +31,6 @@ function SearchWithKeywordPage() {
 
   const isEmptyResult =
     playlist && typesToCheck.every((key) => (playlist as any)[key].total === 0);
-  console.log("playlist:", playlist);
   return (
     <Box>
       {isEmptyResult ? (
@@ -41,7 +41,7 @@ function SearchWithKeywordPage() {
         <>
           <TopArea tracks={playlist?.tracks} />
           <ArtistsBox artists={playlist?.artists} />
-          <AlbumBox albums={playlist?.albums} />
+          <AlbumsBox albums={playlist?.albums} />
         </>
       )}
     </Box>

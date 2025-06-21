@@ -5,7 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const ArtistCardContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  width: "140px",
+  width: "100px",
   // height: "140px",
   borderRadius: "6px",
   padding: "8px",
@@ -25,9 +25,9 @@ const ArtistCardContainer = styled(Box)(({ theme }) => ({
 
 const ArtistImage = styled(Avatar)(() => ({
   width: "100%",
-  maxWidth: "140px",
+  maxWidth: "100px",
   height: "100%",
-  maxHeight: "140px",
+  maxHeight: "100px",
   display: "block",
   objectFit: "cover",
   flexShrink: 0,
@@ -49,7 +49,7 @@ interface ArtistsCardProps {
   artist: Artist;
 }
 
-const ArtistsCard = ({ artist }: ArtistsCardProps) => {
+const ArtistCard = ({ artist }: ArtistsCardProps) => {
   return (
     <ArtistCardContainer>
       <Box>
@@ -96,4 +96,4 @@ const ArtistsCard = ({ artist }: ArtistsCardProps) => {
   );
 };
 
-export default ArtistsCard;
+export default ArtistCard;
