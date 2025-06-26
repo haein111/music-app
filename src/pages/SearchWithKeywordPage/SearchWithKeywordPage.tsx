@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { SEARCH_TYPE } from "../../models/search";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import useGetSearchResult from "../../hooks/useGetSearchResult";
 import LoadingSpinner from "../../common/components/LoadingSpinner";
 import TopArea from "./TopArea";
@@ -9,6 +9,11 @@ import AlbumsBox from "./AlbumsBox";
 
 function SearchWithKeywordPage() {
   const { keyword } = useParams<{ keyword: string }>();
+
+  // if keyword is empty, redirect to home page
+  if (!keyword || keyword.trim() === "") {
+    return <Navigate to="/search" />;
+  }
 
   const {
     data: playlist,

@@ -52,17 +52,29 @@ function Navbar() {
   // Search
 
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const navigate = useNavigate();
 
   const location = useLocation();
   const isSearchPage = location.pathname.startsWith("/search"); // check if it is search page
 
+  // debouncing search
   useEffect(() => {
-    const trimmed = search.trim();
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  useEffect(() => {
+    const trimmed = debouncedSearch.trim();
 
     if (location.pathname.startsWith("/search")) {
       if (trimmed) {
         navigate(`/search/${encodeURIComponent(trimmed)}`); // safely encode non-English characters and spaces in URLs
+      } else {
+        // if keyword is empty, redirect to home page
+        navigate("/search", { replace: true });
       }
     }
   }, [search, navigate]);
