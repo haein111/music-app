@@ -77,7 +77,7 @@ function Navbar() {
         navigate("/search", { replace: true });
       }
     }
-  }, [search, navigate]);
+  }, [debouncedSearch, navigate, location.pathname]);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // null or HTML Element
   const open = Boolean(anchorEl);
