@@ -1,13 +1,27 @@
 import React from "react";
 import NewReleases from "./NewReleases";
-import TracksSection from "./TracksSection";
+import KpopSection from "./KpopSection";
+import RecommendedArtists from "./RecommendedArtists";
+import { styled } from "@mui/material";
+import { Box } from "@mui/material";
+
+const ScrollContainer = styled(Box)({
+  overflowY: "scroll",
+  overflowX: "hidden",
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+});
 
 const HomePage = () => {
   return (
-    <div>
+    <ScrollContainer style={{ maxHeight: "100dvh", overflowY: "auto" }}>
       <NewReleases />
-      <TracksSection />
-    </div>
+      <KpopSection />
+      <RecommendedArtists />
+    </ScrollContainer>
   );
 };
 

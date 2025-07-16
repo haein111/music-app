@@ -5,8 +5,8 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const ArtistCardContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  width: "100px",
-  // height: "140px",
+  width: "100%",
+  height: "100%",
   borderRadius: "6px",
   padding: "8px",
   position: "relative",
@@ -25,9 +25,9 @@ const ArtistCardContainer = styled(Box)(({ theme }) => ({
 
 const ArtistImage = styled(Avatar)(() => ({
   width: "100%",
-  maxWidth: "100px",
+  // maxWidth: "100px",
   height: "100%",
-  maxHeight: "100px",
+  // maxHeight: "100px",
   display: "block",
   objectFit: "cover",
   flexShrink: 0,

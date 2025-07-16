@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { SEARCH_TYPE } from "../../models/search";
 import { Navigate, useParams } from "react-router";
 import useGetSearchResult from "../../hooks/useGetSearchResult";
@@ -6,6 +6,16 @@ import LoadingSpinner from "../../common/components/LoadingSpinner";
 import TopArea from "./TopArea";
 import ArtistsBox from "./ArtistsBox";
 import AlbumsBox from "./AlbumsBox";
+
+const ScrollContainer = styled(Box)({
+  overflowY: "scroll",
+  overflowX: "hidden",
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+});
 
 function SearchWithKeywordPage() {
   const { keyword } = useParams<{ keyword: string }>();
@@ -44,9 +54,11 @@ function SearchWithKeywordPage() {
         </Typography>
       ) : (
         <>
-          <TopArea tracks={playlist?.tracks} />
-          <ArtistsBox artists={playlist?.artists} />
-          <AlbumsBox albums={playlist?.albums} />
+          <ScrollContainer style={{ maxHeight: "100dvh", overflowY: "auto" }}>
+            <TopArea tracks={playlist?.tracks} />
+            <ArtistsBox artists={playlist?.artists} />
+            <AlbumsBox albums={playlist?.albums} />
+          </ScrollContainer>
         </>
       )}
     </Box>

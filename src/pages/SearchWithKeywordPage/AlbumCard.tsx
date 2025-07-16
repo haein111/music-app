@@ -29,6 +29,13 @@ const AlbumImage = styled("img")(() => ({
   overflow: "hidden",
 }));
 
+const TruncatedText = styled(Typography)({
+  maxWidth: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+});
+
 interface AlbumCardProps {
   album: SimplifiedAlbum;
 }
