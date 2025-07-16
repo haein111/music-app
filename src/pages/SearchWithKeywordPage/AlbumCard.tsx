@@ -42,7 +42,7 @@ interface AlbumCardProps {
 const AlbumCard = ({ album }: AlbumCardProps) => {
   return (
     <AlbumCardCardContainer>
-      <Box>
+      <Box sx={{ width: "100%" }}>
         {album?.images?.[0]?.url && (
           <AlbumImage
             src={album?.images?.[0]?.url}
@@ -51,10 +51,10 @@ const AlbumCard = ({ album }: AlbumCardProps) => {
         )}
       </Box>
 
-      <Box sx={{ padding: "4px" }}>
-        <Typography variant="subtitle2" fontWeight="bold">
+      <Box sx={{ padding: "4px", width: "100%" }}>
+        <TruncatedText variant="subtitle2" fontWeight="bold">
           {album?.name}
-        </Typography>
+        </TruncatedText>
         <Typography variant="subtitle2" color="text.secondary">
           {album?.artists?.[0]?.name}
         </Typography>
