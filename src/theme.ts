@@ -2,24 +2,24 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    // mode: "dark",
     primary: {
-      main: "#1ed760",
+      main: "#43DDE6",
     },
     secondary: {
       main: "#ffffff",
     },
     background: {
-      default: "#000",
-      paper: "#121212",
+      default: "#FFFFFF",
+      paper: "#F0F0F0",
     },
     text: {
-      primary: "#fff",
-      secondary: "#b3b3b3",
+      primary: "#000",
+      secondary: "#364F6B",
     },
     action: {
-      hover: "#282828",
-      active: "#333",
+      hover: "#cbcbcbff",
+      active: "#364F6B",
     },
   },
   typography: {
@@ -46,10 +46,10 @@ const theme = createTheme({
           textTransform: "none",
         },
         containedSecondary: {
-          backgroundColor: "#ffffff",
-          color: "#000000",
+          backgroundColor: "#000000",
+          color: "#ffffff",
           "&:hover": {
-            backgroundColor: "#e0e0e0",
+            backgroundColor: "#43DDE6",
           },
         },
         sizeLarge: {

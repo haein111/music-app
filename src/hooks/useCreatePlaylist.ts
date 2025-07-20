@@ -16,7 +16,6 @@ const useCreatePlaylist = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["current-user-playlists"] });
-      console.log("Playlist created successfully");
     },
   });
 };

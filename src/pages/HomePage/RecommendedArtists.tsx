@@ -13,7 +13,6 @@ const RecommendedArtists = () => {
     limit: 6,
     market: "KR",
   });
-  console.log("Artists data", data);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -24,7 +23,6 @@ const RecommendedArtists = () => {
 
   const artists =
     data?.pages?.flatMap((page) => page.artists?.items || []) ?? [];
-  console.log("Artists", artists);
   return (
     <div>
       <Typography variant="h1" fontWeight={700} padding="8px">

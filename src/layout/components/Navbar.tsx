@@ -18,10 +18,10 @@ import { useLocation } from "react-router-dom";
 
 const SearchBox = styled(Box)(({ theme }) => ({
   display: "flex",
-  width: "300px",
+  width: "100%",
   margin: "8px",
   alignItems: "center",
-  backgroundColor: theme.palette.action.active,
+  backgroundColor: "#ffffff",
   borderRadius: "8px",
   "& .MuiOutlinedInput-root": {
     "& fieldset": {

@@ -9,7 +9,6 @@ interface Props {
 const ErrorHandler = ({ error }: Props) => {
   if (isAxiosError(error)) {
     if (error.response?.status === 401) {
-      console.log("401 Unauthorized - 로그인 필요");
       return (
         <Box
           display="flex"

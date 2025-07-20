@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
       retry: 1,
     },
   },
-}); /* retry: api 호출 실패시 재호출 시도 횟수*/
+}); /* retry:1  it will retry once if the query fails */
 root.render(
   <React.StrictMode>
     <BrowserRouter>
